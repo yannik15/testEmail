@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follow-Up: Racket Storm Power</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1a1a2e;
+    }
+
+    .wrapper {
+      max-width: 640px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 60%, #1a1a2e 100%);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(229, 57, 53, 0.15);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .header-label {
+      display: inline-block;
+      background: rgba(229, 57, 53, 0.9);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 span {
+      color: #e53935;
+    }
+    .header-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PRODUCT IMAGE ── */
+    .product-image-wrap {
+      background: linear-gradient(180deg, #16213e 0%, #f0f2f5 100%);
+      text-align: center;
+      padding: 0 40px 0;
+    }
+    .product-image-wrap img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 12px;
+      margin-top: -10px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    /* ── GREETING ── */
+    .greeting {
+      padding: 36px 40px 0;
+    }
+    .greeting p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+    }
+    .greeting p strong {
+      color: #0f3460;
+    }
+
+    /* ── INTRO BLOCK ── */
+    .intro {
+      padding: 28px 40px 0;
+    }
+    .intro p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+      margin: 32px 40px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      padding: 0 40px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e53935;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 0 40px;
+    }
+    .feature-card {
+      background: #f8f9fc;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #0f3460;
+      transition: transform 0.2s;
+    }
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .feature-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f3460;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .feature-card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 32px 40px;
+      background: linear-gradient(135deg, #0f3460, #16213e);
+      margin: 32px 0 0;
+    }
+    .stat {
+      text-align: center;
+      color: #fff;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #e53935;
+      display: block;
+    }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 36px 40px;
+      text-align: center;
+    }
+    .cta-section p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #e53935, #c62828);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 24px rgba(229, 57, 53, 0.4);
+    }
+    .cta-secondary {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #0f3460;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      background: #f8f9fc;
+      border-left: 4px solid #e53935;
+      margin: 0 40px 32px;
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block p {
+      font-size: 14px;
+      font-style: italic;
+      color: #555;
+      line-height: 1.7;
+    }
+    .quote-block span {
+      display: block;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0f3460;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #1a1a2e;
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .footer strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
+    .footer .closing {
+      color: rgba(255,255,255,0.75);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: #e53935;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-label">Exclusive Follow-Up</div>
+      <h1>Elevate Your Game with the<br><span>Racket Storm Power</span></h1>
+      <p class="header-sub">Crafted for champions &mdash; a personal recommendation for you</p>
+    </div>
+
+    <!-- PRODUCT IMAGE -->
+    <div class="product-image-wrap">
+      <img
+        src="https://shop.cupraofficial.com/cdn/shop/files/WILSON_CUPRA_RacketV2_6H2050539ALAA_P1.jpg?v=1758722752&width=2000"
+        alt="Racket Storm Power" />
+    </div>
+
+    <!-- GREETING -->
+    <div class="greeting">
+      <p>Dear <strong>Peter Backfisch</strong>,</p>
+      <br />
+      <p>
+        Thank you for your recent interest in our premium padel collection. Based on your profile,
+        we believe the <strong>Racket Storm Power</strong> is a perfect match for your playing style &mdash;
+        and we wanted to make sure you don't miss out.
+      </p>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>
+        The <strong>Racket Storm Power</strong> has been engineered for players who demand the best &mdash;
+        combining professional-grade materials with cutting-edge aerodynamics to give you an undeniable
+        edge on the court.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FEATURES -->
+    <div class="section-title">Why the Racket Storm Power?</div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Maximum Power</h3>
+        <p>Carbon fiber frame delivers explosive shot energy with every swing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>95% Hit Accuracy</h3>
+        <p>Precision-engineered sweet spot reduces off-center hits dramatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🪶</div>
+        <h3>Ultra Lightweight</h3>
+        <p>Only 280g &mdash; play longer without fatigue holding you back.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Pro-Level Design</h3>
+        <p>Used by competitive players worldwide. Built to win tournaments.</p>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-value">280g</span>
+        <span class="stat-label">Weight</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">95%</span>
+        <span class="stat-label">Hit Ratio</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">€149</span>
+        <span class="stat-label">Price</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">Pro</span>
+        <span class="stat-label">Player Level</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- QUOTE -->
+    <div class="quote-block">
+      <p>
+        "The Racket Storm Power completely transformed my game. The balance between power and control
+        is unlike anything I've tried before. It's the only racket I'll play with."
+      </p>
+      <span>&mdash; Carlos M., Ranked #3 Regional Champion</span>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <p>
+        We'd love to invite you to explore the full product details, book a demo session,
+        or schedule a personal consultation with one of our padel experts &mdash; completely free of charge.
+      </p>
+      <a class="cta-btn" href="mailto:peter.backfisch@example.com?subject=Racket%20Storm%20Power%20Consultation">
+        Book Your Free Consultation
+      </a>
+      <br />
+      <span class="cta-secondary">View full product specifications &rarr;</span>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p class="closing">We look forward to welcoming you to the Racket Storm family.</p>
+      <div class="footer-logo">CX PRESALES</div>
+      <p>
+        <strong>Your CX Presales Team</strong><br />
+        This email was generated by Joule &mdash; SAP's AI Assistant<br />
+        &copy; 2026 CX Presales Demo &bull; All rights reserved
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
