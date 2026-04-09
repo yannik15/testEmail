@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follow-Up: Racket Storm Advanced</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1a1a2e;
+    }
+
+    .wrapper {
+      max-width: 640px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 60%, #0d0d0d 100%);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255, 193, 7, 0.18);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .header-label {
+      display: inline-block;
+      background: rgba(255, 193, 7, 0.95);
+      color: #1a1a1a;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 span { color: #ffc107; }
+    .header-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-image-wrap {
+      background: linear-gradient(180deg, #2c2c2c 0%, #f0f2f5 100%);
+      text-align: center;
+      padding: 0 40px 0;
+    }
+    .product-image-wrap img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 12px;
+      margin-top: -10px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .greeting { padding: 36px 40px 0; }
+    .greeting p { font-size: 16px; line-height: 1.7; color: #333; }
+    .greeting p strong { color: #1a1a1a; }
+
+    .intro { padding: 28px 40px 0; }
+    .intro p { font-size: 15px; line-height: 1.8; color: #444; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+      margin: 32px 40px;
+    }
+
+    .section-title {
+      padding: 0 40px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b8860b;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 0 40px;
+    }
+    .feature-card {
+      background: #f8f9fc;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #1a1a1a;
+    }
+    .feature-icon { font-size: 24px; margin-bottom: 10px; }
+    .feature-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .feature-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 32px 40px;
+      background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+      margin: 32px 0 0;
+    }
+    .stat { text-align: center; color: #fff; }
+    .stat-value { font-size: 28px; font-weight: 800; color: #ffc107; display: block; }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .cta-section { padding: 36px 40px; text-align: center; }
+    .cta-section p { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 28px; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffc107, #b8860b);
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 24px rgba(255, 193, 7, 0.4);
+    }
+    .cta-secondary {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #1a1a1a;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .quote-block {
+      background: #f8f9fc;
+      border-left: 4px solid #ffc107;
+      margin: 0 40px 32px;
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block p { font-size: 14px; font-style: italic; color: #555; line-height: 1.7; }
+    .quote-block span { display: block; margin-top: 10px; font-size: 12px; font-weight: 600; color: #1a1a1a; }
+
+    .footer { background: #1a1a1a; padding: 32px 40px; text-align: center; }
+    .footer p { color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.8; }
+    .footer strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .footer .closing { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 16px; }
+    .footer-logo { font-size: 18px; font-weight: 800; color: #ffc107; letter-spacing: 1px; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <div class="header-label">Exclusive Follow-Up</div>
+      <h1>Start Strong with the<br><span>Racket Storm Advanced</span></h1>
+      <p class="header-sub">Your first step into padel &mdash; engineered for confidence</p>
+    </div>
+
+    <div class="product-image-wrap">
+      <img
+        src="https://www.padeliberico.es/13622-large_default/wilson-defy-v1-2025.jpg"
+        alt="Racket Storm Advanced" />
+    </div>
+
+    <div class="greeting">
+      <p>Dear <strong>Peter Backfisch</strong>,</p>
+      <br />
+      <p>
+        Thank you for your interest in our padel collection. Based on your profile,
+        the <strong>Racket Storm Advanced</strong> is the ideal starting point &mdash;
+        designed to help beginners build confidence, develop technique and fall in love with the game.
+      </p>
+    </div>
+
+    <div class="intro">
+      <p>
+        The <strong>Racket Storm Advanced</strong> combines a beginner-friendly design with
+        surprisingly high-quality materials, giving newcomers the best possible foundation
+        to grow their skills without compromise.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-title">Why the Racket Storm Advanced?</div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Beginner Friendly</h3>
+        <p>Oversized sweet spot makes it forgiving for players still finding their technique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>80% Hit Accuracy</h3>
+        <p>Large hitting area boosts confidence and keeps rallies going longer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Shock Absorption</h3>
+        <p>310g frame with vibration dampening protects joints during long sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Unbeatable Entry Price</h3>
+        <p>Premium brand quality at an entry-level price – the smartest way to start.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-value">310g</span>
+        <span class="stat-label">Weight</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">80%</span>
+        <span class="stat-label">Hit Ratio</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">€69</span>
+        <span class="stat-label">Price</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">Entry</span>
+        <span class="stat-label">Player Level</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote-block">
+      <p>
+        "I'd never played padel before picking up the Racket Storm Advanced. After just three weeks
+        I was winning games at my local club. The racket makes you feel like a natural."
+      </p>
+      <span>&mdash; Luisa T., Recreational Player &amp; New Padel Enthusiast</span>
+    </div>
+
+    <div class="cta-section">
+      <p>
+        We'd love to invite you to explore the full product details, book a taster session,
+        or speak with one of our padel coaches &mdash; completely free of charge.
+      </p>
+      <a class="cta-btn" href="mailto:peter.backfisch@example.com?subject=Racket%20Storm%20Advanced%20Consultation">
+        Book Your Free Consultation
+      </a>
+      <br />
+      <span class="cta-secondary">View full product specifications &rarr;</span>
+    </div>
+
+    <div class="footer">
+      <p class="closing">We look forward to welcoming you to the Racket Storm family.</p>
+      <div class="footer-logo">CX PRESALES</div>
+      <p>
+        <strong>Your CX Presales Team</strong><br />
+        This email was generated by Joule &mdash; SAP's AI Assistant<br />
+        &copy; 2026 CX Presales Demo &bull; All rights reserved
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Follow-Up: Racket Storm Classic</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #1a1a2e;
+    }
+
+    .wrapper {
+      max-width: 640px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0d2137 0%, #1565c0 60%, #0a1628 100%);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(100, 181, 246, 0.15);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .header-label {
+      display: inline-block;
+      background: rgba(100, 181, 246, 0.95);
+      color: #0d2137;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .header h1 span { color: #64b5f6; }
+    .header-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 14px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-image-wrap {
+      background: linear-gradient(180deg, #1565c0 0%, #f0f2f5 100%);
+      text-align: center;
+      padding: 0 40px 0;
+    }
+    .product-image-wrap img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 12px;
+      margin-top: -10px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .greeting { padding: 36px 40px 0; }
+    .greeting p { font-size: 16px; line-height: 1.7; color: #333; }
+    .greeting p strong { color: #0d2137; }
+
+    .intro { padding: 28px 40px 0; }
+    .intro p { font-size: 15px; line-height: 1.8; color: #444; }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+      margin: 32px 40px;
+    }
+
+    .section-title {
+      padding: 0 40px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1565c0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 0 40px;
+    }
+    .feature-card {
+      background: #f8f9fc;
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid #1565c0;
+    }
+    .feature-icon { font-size: 24px; margin-bottom: 10px; }
+    .feature-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0d2137;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .feature-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 32px 40px;
+      background: linear-gradient(135deg, #0d2137, #1565c0);
+      margin: 32px 0 0;
+    }
+    .stat { text-align: center; color: #fff; }
+    .stat-value { font-size: 28px; font-weight: 800; color: #64b5f6; display: block; }
+    .stat-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .cta-section { padding: 36px 40px; text-align: center; }
+    .cta-section p { font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 28px; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #1565c0, #0d2137);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 24px rgba(21, 101, 192, 0.4);
+    }
+    .cta-secondary {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #0d2137;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .quote-block {
+      background: #f8f9fc;
+      border-left: 4px solid #64b5f6;
+      margin: 0 40px 32px;
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+    }
+    .quote-block p { font-size: 14px; font-style: italic; color: #555; line-height: 1.7; }
+    .quote-block span { display: block; margin-top: 10px; font-size: 12px; font-weight: 600; color: #0d2137; }
+
+    .footer { background: #0d2137; padding: 32px 40px; text-align: center; }
+    .footer p { color: rgba(255,255,255,0.5); font-size: 12px; line-height: 1.8; }
+    .footer strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .footer .closing { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 16px; }
+    .footer-logo { font-size: 18px; font-weight: 800; color: #64b5f6; letter-spacing: 1px; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="header">
+      <div class="header-label">Exclusive Follow-Up</div>
+      <h1>The Perfect All-Rounder:<br><span>Racket Storm Classic</span></h1>
+      <p class="header-sub">Trusted by thousands &mdash; a timeless choice for every court</p>
+    </div>
+
+    <div class="product-image-wrap">
+      <img
+        src="https://www.padel-point.de/cdn/shop/files/0070760427100000.jpg?crop=center&v=1774264224&width=2500"
+        alt="Racket Storm Classic" />
+    </div>
+
+    <div class="greeting">
+      <p>Dear <strong>Peter Backfisch</strong>,</p>
+      <br />
+      <p>
+        Thank you for your interest in our padel collection. Based on your playing profile,
+        we think the <strong>Racket Storm Classic</strong> is the ideal racket to take your game
+        to the next level &mdash; combining reliability, control and outstanding value.
+      </p>
+    </div>
+
+    <div class="intro">
+      <p>
+        The <strong>Racket Storm Classic</strong> has been trusted by intermediate players worldwide
+        for its exceptional balance between power and precision. Whether you're competing in club
+        leagues or playing weekend matches, this racket delivers consistent performance every time.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-title">Why the Racket Storm Classic?</div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🎾</div>
+        <h3>All-Court Control</h3>
+        <p>Perfectly balanced frame gives you precise control on every shot.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>88% Hit Accuracy</h3>
+        <p>Consistent sweet spot ensures reliable performance match after match.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💪</div>
+        <h3>Durable Build</h3>
+        <p>295g reinforced construction withstands intensive training sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Best Value</h3>
+        <p>Professional-grade quality at an intermediate price point – unbeatable.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-value">295g</span>
+        <span class="stat-label">Weight</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">88%</span>
+        <span class="stat-label">Hit Ratio</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">€99</span>
+        <span class="stat-label">Price</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">Mid</span>
+        <span class="stat-label">Player Level</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote-block">
+      <p>
+        "I switched to the Racket Storm Classic six months ago and my win rate improved immediately.
+        It's incredibly forgiving on off-center hits and the control is just phenomenal."
+      </p>
+      <span>&mdash; Sandra K., Club League Finalist</span>
+    </div>
+
+    <div class="cta-section">
+      <p>
+        We'd love to invite you to explore the full product details, book a demo session,
+        or schedule a personal consultation with one of our padel experts &mdash; completely free of charge.
+      </p>
+      <a class="cta-btn" href="mailto:peter.backfisch@example.com?subject=Racket%20Storm%20Classic%20Consultation">
+        Book Your Free Consultation
+      </a>
+      <br />
+      <span class="cta-secondary">View full product specifications &rarr;</span>
+    </div>
+
+    <div class="footer">
+      <p class="closing">We look forward to welcoming you to the Racket Storm family.</p>
+      <div class="footer-logo">CX PRESALES</div>
+      <p>
+        <strong>Your CX Presales Team</strong><br />
+        This email was generated by Joule &mdash; SAP's AI Assistant<br />
+        &copy; 2026 CX Presales Demo &bull; All rights reserved
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
